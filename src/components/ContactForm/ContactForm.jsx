@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Label, Form, Input, Button } from './ContactForm.styled.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContacts } from 'redux/contactsSlice.jsx';
+import { addContacts } from 'redux/contacts/contactsSlice.jsx';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const ContactForm = () => {

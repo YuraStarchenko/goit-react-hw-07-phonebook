@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { List, Item, Btn, Text } from './ContactList.styled';
-import { remove } from 'redux/contactsSlice';
+import { remove } from 'redux/contacts/contactsSlice';
 import { nanoid } from 'nanoid';
 
 export const ContactList = () => {

@@ -10,8 +10,8 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { contactSlice } from './contactsSlice';
-import { filterSlice } from './filterSlice';
+import { contactSlice } from './contacts/contactsSlice';
+import { filterSlice } from './filtrer/filterSlice';
 
 const persistConfig = {
   key: 'root',
