@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { List, Item, Btn, Text } from './ContactList.styled';
-import { remove } from 'redux/contactsSlice';
+import { contactsReducer } from 'redux/contactsSlice';
 import { nanoid } from 'nanoid';
 
 export const ContactList = () => {
@@ -13,8 +13,8 @@ export const ContactList = () => {
     contact.name.toLowerCase().includes(filter)
   );
 
-  const handleRemoveContact = id => {
-    dispatch(remove(id));
+  const handleDeleteContact = id => {
+    dispatch(contactsReducer(id));
   };
 
   return (
@@ -28,7 +28,7 @@ export const ContactList = () => {
             <Btn
               type="button"
               onClick={() => {
-                handleRemoveContact(contact.id);
+                handleDeleteContact(contact.id);
               }}
             >
               delete

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Label, Form, Input, Button } from './ContactForm.styled.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContacts } from 'redux/contactsSlice.jsx';
+import { contactsReducer } from 'redux/contactsSlice.jsx';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const ContactForm = () => {
@@ -34,7 +34,7 @@ export const ContactForm = () => {
       return Notify.info(`${name} is already in contacts.`);
     }
 
-    dispatch(addContacts(name, number));
+    dispatch(contactsReducer(name, number));
 
     reset();
   };
