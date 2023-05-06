@@ -1,6 +1,6 @@
 import { Input } from './Filter.styled.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { setFilter } from 'redux/filtrer/filterSlice.jsx';
+import { setFilter } from 'redux/filterSlice.jsx';
 
 export const Filter = () => {
   const dispatch = useDispatch();
