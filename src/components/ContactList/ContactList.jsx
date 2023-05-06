@@ -1,20 +1,21 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { List, Item, Btn, Text } from './ContactList.styled';
-import { contactsReducer } from 'redux/contactsSlice';
+import { deleteContacts } from 'redux/operations';
+import { selectContacts, selectFilter } from 'redux/selectors';
 import { nanoid } from 'nanoid';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(state => state.contacts.contacts);
-  const filter = useSelector(state => state.filter.filter);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
 
   const filterContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter)
   );
 
   const handleDeleteContact = id => {
-    dispatch(contactsReducer(id));
+    dispatch(deleteContacts(id));
   };
 
   return (
