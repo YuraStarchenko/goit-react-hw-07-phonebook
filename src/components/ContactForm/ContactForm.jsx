@@ -5,8 +5,9 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const { data: contacts } = fetchContacts();
+
 
   const handleNameChange = e => {
     const { value, name } = e.currentTarget;
@@ -15,14 +16,14 @@ export const ContactForm = () => {
       case 'name':
         setName(value);
         break;
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
 
       default:
         break;
     }
-  };
+	};
 
   const handleSubmitBtn = evt => {
     evt.preventDefault();
@@ -31,14 +32,14 @@ export const ContactForm = () => {
       return Notify.info(`${name} is already in contacts.`);
     }
 
-    addContacts({ name, phone });
+    addContacts({ name, number });
 
     reset();
   };
 
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -60,7 +61,7 @@ export const ContactForm = () => {
         <Input
           type="tel"
           name="number"
-          value={phone}
+          value={number}
           onChange={handleNameChange}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
