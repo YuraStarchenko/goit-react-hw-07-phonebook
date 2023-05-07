@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 import { List, Item, Btn, Text } from './ContactList.styled';
 import { deleteContacts, fetchContacts } from 'redux/operations';
@@ -23,7 +24,7 @@ export const ContactList = () => {
     <List>
       {filterContacts.map(contact => {
         return (
-          <Item key={contact.id}>
+          <Item key={nanoid()}>
             <Text>
               {contact.name}: {contact.number}
             </Text>
