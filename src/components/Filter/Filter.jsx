@@ -12,5 +12,12 @@ export const Filter = () => {
     dispatch(setFilter(e.currentTarget.value));
   };
 
-  return <Input type="text" value={filter} onChange={handleFilterContact} />;
+  return (
+    <Input
+      type="text"
+      value={filter}
+      placeholder="Enter a search name"
+      onChange={handleFilterContact}
+    />
+  );
 };
