@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { Label, Form, Input, Button } from './ContactForm.styled.js';
-import { addContacts, fetchContacts } from 'redux/operations';
+import { addContacts } from 'redux/operations';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectContacts } from 'redux/selectors.jsx';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const { data: contacts } = fetchContacts();
-
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const handleNameChange = e => {
     const { value, name } = e.currentTarget;
@@ -23,23 +25,24 @@ export const ContactForm = () => {
       default:
         break;
     }
-	};
-
-  const handleSubmitBtn = evt => {
-    evt.preventDefault();
-
-    if (contacts.find(contact => contact.name === name)) {
-      return Notify.info(`${name} is already in contacts.`);
-    }
-
-    addContacts({ name, number });
-
-    reset();
   };
 
-  const reset = () => {
-    setName('');
-    setNumber('');
+  const handleSubmitBtn = (value, { resetForm }) => {
+    let isDuplicate = true;
+
+    contacts.map(
+      item =>
+        (isDuplicate = !item.name
+          .toLocaleLowerCase()
+          .includes(value.name.toLocaleLowerCase()))
+    );
+    if (isDuplicate) {
+      const contact = { name: value.name, phone: value.number };
+      dispatch(addContacts(contact));
+      resetForm();
+    } else {
+      Notify.info(`${value.name} is already in contacts`);
+    }
   };
 
   return (
