@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Label, Form, Input, Button } from './ContactForm.styled.js';
 import { addContacts } from 'redux/operations';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -6,26 +6,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors.jsx';
 
 export const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  // const [name, setName] = useState('');
+  // const [number, setNumber] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
-  const handleNameChange = e => {
-    const { value, name } = e.currentTarget;
+  // const handleNameChange = e => {
+  //   const { value, name } = e.currentTarget;
 
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
+  //   switch (name) {
+  //     case 'name':
+  //       setName(value);
+  //       break;
+  //     case 'number':
+  //       setNumber(value);
+  //       break;
 
-      default:
-        break;
-    }
-  };
+  //     default:
+  //       break;
+  //   }
+  // };
 
   const handleSubmitBtn = (value, { resetForm }) => {
     let isDuplicate = true;
@@ -50,10 +50,10 @@ export const ContactForm = () => {
       <Label>
         Name
         <Input
+          id="name"
           type="text"
           name="name"
-          value={name}
-          onChange={handleNameChange}
+          placeholder="Name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
@@ -62,10 +62,10 @@ export const ContactForm = () => {
       <Label>
         Number
         <Input
+          id="number"
           type="tel"
           name="number"
-          value={number}
-          onChange={handleNameChange}
+          placeholder="Number phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
