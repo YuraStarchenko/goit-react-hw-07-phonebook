@@ -6,18 +6,15 @@ import { selectFilter } from 'redux/selectors';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(selectFilter);
-
-  const handleFilterContact = e => {
-    dispatch(setFilter(e.currentTarget.value));
-  };
+  const value = useSelector(selectFilter);
 
   return (
     <Input
       type="text"
-      value={filter}
-      placeholder="Enter a search name"
-      onChange={handleFilterContact}
+      name="filter"
+      title="Filter"
+      onChange={e => dispatch(setFilter(e.target.value))}
+      value={value}
     />
   );
 };

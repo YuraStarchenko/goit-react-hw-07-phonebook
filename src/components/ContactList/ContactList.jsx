@@ -6,8 +6,7 @@ import { selectContacts, selectFilter } from 'redux/selectors';
 export const ContactList = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
-	const filter = useSelector(selectFilter);
-	
+  const filter = useSelector(selectFilter);
   const filterContacts = contacts.filter(el =>
     el.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
   );
@@ -22,9 +21,7 @@ export const ContactList = () => {
             </Text>
             <Btn
               type="button"
-              onClick={() => {
-                dispatch(deleteContacts(contact.id));
-              }}
+              onClick={() => dispatch(deleteContacts(contact.id))}
             >
               delete
             </Btn>

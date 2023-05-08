@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchContacts, addContacts, deleteContacts } from './operations';
+import { addContacts, fetchContacts, deleteContacts } from './operations';
 //Масив экшенов.
 const extraActions = [fetchContacts, addContacts, deleteContacts];
 // Мэпает масив экшенов и распыляет их в isAnyOf.
