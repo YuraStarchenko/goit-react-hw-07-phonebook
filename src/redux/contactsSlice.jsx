@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addContacts, fetchContacts, deleteContacts } from './operations';
+import { addContact, fetchContacts, deleteContact } from './operations';
 //Масив экшенов.
-const extraActions = [fetchContacts, addContacts, deleteContacts];
+const extraActions = [fetchContacts, addContact, deleteContact];
 // Мэпает масив экшенов и распыляет их в isAnyOf.
 const getActions = type => isAnyOf(...extraActions.map(action => action[type]));
 // Case reducer
@@ -41,11 +41,12 @@ const contactSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(fetchContacts.fulfilled, fetchContactsSuccessReducer)
-      .addCase(addContacts.fulfilled, addContactsSuccessReducer)
-      .addCase(deleteContacts.fulfilled, deleteContactsSuccessReducer)
+      .addCase(addContact.fulfilled, addContactsSuccessReducer)
+      .addCase(deleteContact.fulfilled, deleteContactsSuccessReducer)
       .addMatcher(getActions('pending'), pendingReducer)
       .addMatcher(getActions('rejected'), rejectedReducer)
       .addMatcher(getActions('fulfilled'), fulfilledReducer),
 });
+
 
 export const contactsReducer = contactSlice.reducer;

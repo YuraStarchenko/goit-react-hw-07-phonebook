@@ -2,40 +2,32 @@ import { Label, Form, Input, Button } from './ContactForm.styled.js';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors.jsx';
-import { addContacts } from 'redux/operations';
-import { Formik } from 'formik';
+import { addContact } from 'redux/operations';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const handleSubmitBtn = (value, { resetForm }) => {
+  const handleSubmit = (value, { resetForm }) => {
     let isDuplicate = true;
 
     contacts.map(
       item =>
         (isDuplicate = !item.name
-          .toLocaleLowerCase()
-          .includes(value.name.toLocaleLowerCase()))
+          .toLowerCase()
+          .includes(value.name.toLowerCase()))
     );
     if (isDuplicate) {
       const contact = { name: value.name, phone: value.number };
-      dispatch(addContacts(contact));
+      dispatch(addContact(contact));
       resetForm();
     } else {
       Notify.info(`${value.name} is already in contacts`);
     }
   };
 
-	return (
+  return (
     <>
-      <Formik
-        initialValues={{
-          name: '',
-          number: '',
-        }}
-        onSubmit={handleSubmitBtn}
-      >
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Label htmlFor="name">
             Name
             <Input
@@ -62,7 +54,6 @@ export const ContactForm = () => {
           </Label>
           <Button type="submit">Add contacts</Button>
         </Form>
-      </Formik>
     </>
   );
 };
