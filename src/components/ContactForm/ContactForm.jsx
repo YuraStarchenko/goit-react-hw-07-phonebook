@@ -3,6 +3,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/selectors.jsx';
 import { addContact } from 'redux/operations';
+import { Formik } from 'formik';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,14 @@ export const ContactForm = () => {
 
   return (
     <>
-        <Form onSubmit={handleSubmit}>
+      <Formik
+        initialValues={{
+          name: '',
+          number: '',
+        }}
+        onSubmit={handleSubmit}
+      >
+        <Form>
           <Label htmlFor="name">
             Name
             <Input
@@ -54,6 +62,7 @@ export const ContactForm = () => {
           </Label>
           <Button type="submit">Add contacts</Button>
         </Form>
+      </Formik>
     </>
   );
 };

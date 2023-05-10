@@ -1,15 +1,16 @@
 import styled from 'styled-components';
+import { Field as FormikInput, Form as FormikForm } from 'formik';
 
 export const Label = styled.label`
   width: 100%;
   margin: 0 auto;
 `;
 
-export const Form = styled.form`
+export const Form = styled(FormikForm)`
   margin: 10px 0;
 `;
 
-export const Input = styled.input`
+export const Input = styled(FormikInput)`
   display: flex;
   width: 250px;
   padding: 8px;
